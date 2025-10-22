@@ -5,7 +5,7 @@ from django.conf import settings
 
 class Material(models.Model):
 
-    id_material = models.CharField(max_length=50,null=True,blank=True,verbose_name="Material ID")
+    id_material = models.CharField(max_length=50,null=True,unique=True,verbose_name="Material ID")
     name = models.CharField(max_length=100,verbose_name="Name")
     description = models.TextField(max_length=250,blank=True,verbose_name="Description")
     unit = models.CharField(max_length=50,verbose_name="Unit measure")
@@ -13,8 +13,8 @@ class Material(models.Model):
     status = models.CharField(max_length=50,verbose_name="status")
 
     created_at = models.DateTimeField(auto_now_add=True)
-    created_at = models.DateTimeField(auto_now=True)
-    cretrd_by  = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.SET_NULL, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_by  = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.SET_NULL, null=True)
 
     class Meta:
         verbose_name = "Material"

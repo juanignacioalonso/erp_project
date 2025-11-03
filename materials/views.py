@@ -89,7 +89,7 @@ def material_create(request):
     max_permission = UserRole.objects.filter(user_id=request.user).aggregate(max_permission=models.Max('role__materials'))['max_permission'] or 0
 
     if max_permission == 1:
-        return redirect('materials:material_list')
+        return redirect('materials')
     if max_permission == 0:
         return redirect('dashboard')
     
@@ -101,7 +101,7 @@ def material_create(request):
             material.created_by =request.user
             material.save()
 
-            return redirect('materials:material_list')
+            return redirect('materials:material_create')
     else:
         form = MaterialForm()
         
